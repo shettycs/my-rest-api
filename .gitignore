@@ -1,6 +1,4 @@
 
-# db postgres docker compose
-db/
 # Node.js
 node_modules/
 npm-debug.log*
