@@ -7,8 +7,8 @@ console.log('Express api poc')
 const port = process.env.PORT || 3000;
 
 app.get('/api/hello', (req, res) => {
-    res.json({ message: 'Hello, World!' });
-  });
+  res.json({ message: 'Hello, World!' });
+});
 
 let todos = [];
 
@@ -17,7 +17,16 @@ app.get('/api/todos', (req, res) => {
 });
 
 app.post('/api/todos', (req, res) => {
-  const newTodo = req.body;
+  //const newTodo = req.body;
+  var newTodo = {
+    task: ''
+    , taskowner: '',
+    completionDate: ''
+  };
+  newTodo.task = req.body.task;
+  newTodo.taskowner = req.body.taskowner;
+  newTodo.completionDate = req.body.completionDate;
+  newTodo.id = todos.length+1;
   todos.push(newTodo);
   res.status(201).json(newTodo);
 });
