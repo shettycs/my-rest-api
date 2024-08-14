@@ -53,14 +53,14 @@ app.put('/api/todos/:id', (req, res) => {
 });
 
 // Delete a todo by ID
-app.delete('/todos/:id', (req, res) => {
+app.delete('/api/todos/:id', (req, res) => {
   const todoIndex = todos.findIndex(todoitem => todoitem.id === parseInt(req.params.id));
   if (todoIndex === -1) {
       return res.status(404).json({ message: 'Todo not found' });
   }
 
   todos.splice(todoIndex, 1);
-  res.status(204).send(); // No content
+  res.status(204).send(`Successfully Deleted todo with id ${req.params.id} located at ${todoIndex}`); // No content
 });
 
 app.listen(port, () => {
