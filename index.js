@@ -60,7 +60,7 @@ app.delete('/api/todos/:id', (req, res) => {
   }
 
   todos.splice(todoIndex, 1);
-  res.status(204).send(`Successfully Deleted todo with id ${req.params.id} located at ${todoIndex}`); // No content
+  res.status(200).send(`Successfully Deleted todo with id ${req.params.id} located at ${todoIndex}`); // No content
 });
 
 app.listen(port, () => {
