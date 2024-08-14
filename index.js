@@ -31,6 +31,15 @@ app.post('/api/todos', (req, res) => {
   res.status(201).json(newTodo);
 });
 
+// Read a single todo by ID
+app.get('/api/todos/:id', (req, res) => {
+  const todo = todos.find(todoitem => todoitem.id === parseInt(req.params.id));
+  if (!todo) {
+      return res.status(404).json({ message: 'Todo not found' });
+  }
+  res.json(todo);
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
