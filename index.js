@@ -40,6 +40,29 @@ app.get('/api/todos/:id', (req, res) => {
   res.json(todo);
 });
 
+// Update a todo by ID
+app.put('/api/todos/:id', (req, res) => {
+  const todo = todos.find(todoitem => todoitem.id === parseInt(req.params.id));
+  if (!todo) {
+      return res.status(404).json({ message: 'Todo not found' });
+  }
+  todo.task = req.body.task || todo.task;
+  todo.taskowner = req.body.taskowner || todo.taskowner;
+  todo.completionDate = req.body.completionDate || todo.completionDate;
+  res.json(todo);
+});
+
+// Delete a todo by ID
+app.delete('/todos/:id', (req, res) => {
+  const todoIndex = todos.findIndex(todoitem => todoitem.id === parseInt(req.params.id));
+  if (todoIndex === -1) {
+      return res.status(404).json({ message: 'Todo not found' });
+  }
+
+  todos.splice(todoIndex, 1);
+  res.status(204).send(); // No content
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
