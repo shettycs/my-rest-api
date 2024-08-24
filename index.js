@@ -45,7 +45,7 @@ app.post('/login', (req, res) => {
       {
         status:'Login successful',
         success: true,
-        todos: ['Basic rest call','frontend backend integration','login api']
+        todos: todos
 
       }
     )
