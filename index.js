@@ -31,6 +31,20 @@ app.post('/api/todos', (req, res) => {
   res.status(201).json(newTodo);
 });
 
+app.post('/login', (req, res) => {
+  console.log(`login api called with ${req.body.username} ${req.body.password}`);
+  const username = req.body.username;
+  const password = req.body.password;
+  if(username == 'charishma' && password == 'mysecret')
+  {
+    res.status(201).json({status:'Login successful'})
+  }
+  else
+  {
+    res.status(401).json({status:'Login unsuccessful'})
+  }
+});
+
 // Read a single todo by ID
 app.get('/api/todos/:id', (req, res) => {
   const todo = todos.find(todoitem => todoitem.id === parseInt(req.params.id));
