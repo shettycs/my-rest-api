@@ -20,6 +20,16 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 300px;
             text-align: center;
+            display: block;
+        }
+        .todo-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            display: none; /* Initially hidden */
         }
         input[type="text"], input[type="password"] {
             width: 100%;
@@ -45,11 +55,14 @@
             margin-top: 10px;
             display: none; /* Initially hidden */
         }
+        .todos-list {
+            text-align: left;
+        }
     </style>
 </head>
 <body>
 
-<div class="login-container">
+<div id="loginSection" class="login-container">
     <h2>Login</h2>
     <form id="loginForm">
         <input type="text" id="username" name="username" placeholder="Username" required>
@@ -57,6 +70,15 @@
         <button type="submit">Login</button>
         <p id="errorMessage" class="error-message">Invalid username or password. Please try again.</p>
     </form>
+</div>
+
+<div id="todoSection" class="todo-container">
+    <h2>Todo List</h2>
+    <div class="todos-list">
+        <ul id="todos">
+            <!-- Todo items will be dynamically inserted here -->
+        </ul>
+    </div>
 </div>
 
 <script>
@@ -80,8 +102,21 @@
         .then(data => {
             console.log(data)
             if (data.success) {
-                alert('Login successful!');
+                // Hide login section and show todo section
+                document.getElementById('loginSection').style.display = 'none';
+                document.getElementById('todoSection').style.display = 'block';
+                //alert('Login successful!');
                 // Redirect or perform actions on successful login
+                // Populate the todos list
+                const todos = data.todos; // Assume the backend returns an array of todos
+                //mock data
+                //const todos = ["Basic HTML learning","HTML to backend restapi"]
+                const todosList = document.getElementById('todos');
+                todos.forEach(todo => {
+                    const li = document.createElement('li');
+                    li.textContent = todo;
+                    todosList.appendChild(li);
+                });
             } else {
                 document.getElementById('errorMessage').style.display = 'block';
             }

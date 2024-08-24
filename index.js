@@ -38,13 +38,14 @@ app.post('/login', (req, res) => {
   console.log(`login api called with ${req.body.username} ${req.body.password}`);
   const username = req.body.username;
   const password = req.body.password;
-  if(username == 'charishma' && password == 'mysecret')
+  if(username == 'demouser' && password == 'mysecret')
   {
     console.log('Valid username and password login is successful')
     res.status(201).json(
       {
         status:'Login successful',
-        success: true
+        success: true,
+        todos: ['Basic rest call','frontend backend integration','login api']
 
       }
     )
