@@ -41,12 +41,24 @@ app.post('/login', (req, res) => {
   if(username == 'charishma' && password == 'mysecret')
   {
     console.log('Valid username and password login is successful')
-    res.status(201).json({status:'Login successful'})
+    res.status(201).json(
+      {
+        status:'Login successful',
+        success: true
+
+      }
+    )
   }
   else
   {
     console.log('Invalid username or password login unsuccessful')
-    res.status(401).json({status:'Login unsuccessful'})
+    res.status(401).json(
+      {
+        status:'Login unsuccessful',
+        success: false
+      }
+    )
+
   }
 });
 
